@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* In your global CSS file, e.g., src/index.css or src/tailwind.css */
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%); /* Slides out to the right */
+    opacity: 0;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out forwards; /* 0.3s duration for entry */
+}
+
+.animate-slide-out-right {
+  animation: slide-out-right 0.3s ease-in forwards; /* 0.3s duration for exit */
+}
