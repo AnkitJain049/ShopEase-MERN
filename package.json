@@ -1,5 +1,27 @@
 {
-  "dependencies": {
-    "react-router-dom": "^7.6.3"
+  "name": "shopease-mern",
+  "version": "1.0.0",
+  "description": "ShopEase - A MERN Stack E-commerce Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd frontend && npm run build",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "mern",
+    "ecommerce",
+    "react",
+    "nodejs",
+    "mongodb",
+    "express"
+  ],
+  "author": "Ankit Jain",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }
