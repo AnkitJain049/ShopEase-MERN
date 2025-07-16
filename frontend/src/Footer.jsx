@@ -13,10 +13,21 @@ function Footer() {
 
         {/* Links */}
         <ul className="flex flex-wrap justify-center space-x-6 text-sm text-gray-600 dark:text-gray-400">
-          <li><Link to="#" className="hover:underline">About</Link></li>
-          <li><Link to="#" className="hover:underline">Privacy Policy</Link></li>
-          <li><Link to="#" className="hover:underline">Licensing</Link></li>
-          <li><Link to="#" className="hover:underline">Contact</Link></li>
+          <li>
+            <a href="https://github.com/AnkitJain049/ShopEase-MERN" target="_blank" rel="noopener noreferrer" className="hover:underline">
+              Source Code
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/ankitjain-bpit/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="mailto:ankitjain.0142@gmail.com" className="hover:underline">
+              Email
+            </a>
+          </li>
         </ul>
       </div>
 
