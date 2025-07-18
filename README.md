@@ -1,154 +1,132 @@
-# ShopEase - MERN Stack E-commerce Application
+# ShopEase - Production Ready E-commerce Platform
 
-A full-stack e-commerce platform built with the MERN stack (MongoDB, Express.js, React.js, Node.js) featuring user authentication, product management, payment processing, and an AI-powered chatbot.
+A full-stack e-commerce application with React frontend and Node.js backend.
 
-## 🚀 Features
+## 🚀 Quick Start
 
-- **User Authentication**: Secure login/register with session management
-- **Product Management**: Add, edit, delete products with image uploads
-- **Shopping Experience**: Browse products, add to wishlist, view details
-- **Payment Integration**: Razorpay payment gateway integration
-- **Review System**: Product reviews and ratings
-- **AI Chatbot**: Intelligent customer support chatbot
-- **Responsive Design**: Mobile-friendly UI with Tailwind CSS
-- **Search & Filter**: Advanced product search and filtering
-- **Order Management**: Complete order history and tracking
+### Development Mode
 
-## 🛠️ Tech Stack
-
-### Backend
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **MongoDB** - Database
-- **Mongoose** - ODM for MongoDB
-- **Passport.js** - Authentication
-- **Multer** - File uploads
-- **Razorpay** - Payment processing
-- **Google AI** - Chatbot integration
-
-### Frontend
-- **React.js** - UI library
-- **Vite** - Build tool
-- **React Router** - Navigation
-- **Axios** - HTTP client
-- **Tailwind CSS** - Styling
-
-## 📦 Installation
-
-1. **Clone the repository**
+1. **Backend Setup:**
    ```bash
-   git clone https://github.com/AnkitJain049/ShopEase-MERN.git
-   cd ShopEase-MERN
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm run install-all
-   ```
-
-3. **Environment Setup**
-   
-   Create `.env` file in the backend directory:
-   ```env
-   MONGODB_URI=your_mongodb_connection_string
-   SESSION_SECRET=your_session_secret
-   FRONTEND_URL=http://localhost:5173
-   RAZORPAY_KEY_ID=your_razorpay_key_id
-   RAZORPAY_KEY_SECRET=your_razorpay_secret
-   CHATBOT_URL=your_chatbot_api_url
-   ```
-
-4. **Run the application**
-   ```bash
-   # Development mode
+   cd backend
+   npm install
+   cp env.example .env
+   # Edit .env file with your configuration
    npm run dev
-   
-   # Production mode
+   ```
+
+2. **Frontend Setup:**
+   ```bash
+   cd frontend
+   npm install
+   # Create .env.development file with VITE_API_BASE_URL=http://localhost:5000
+   npm run dev
+   ```
+
+### Production Mode
+
+1. **Backend Deployment:**
+   ```bash
+   cd backend
+   # Set NODE_ENV=production in your environment
+   # Update .env with production values
    npm start
    ```
 
-## 🌐 Deployment
+2. **Frontend Deployment:**
+   ```bash
+   cd frontend
+   # Create .env.production with your production API URL
+   npm run build
+   # Deploy the 'dist' folder to your hosting service
+   ```
 
-### Backend Deployment (Render)
-
-1. Connect your GitHub repository to Render
-2. Create a new Web Service
-3. Configure the following settings:
-   - **Build Command**: `cd backend && npm install`
-   - **Start Command**: `cd backend && npm start`
-   - **Root Directory**: Leave empty (deploy from root)
-
-### Frontend Deployment (Vercel/Netlify)
-
-1. Connect your GitHub repository
-2. Configure build settings:
-   - **Build Command**: `cd frontend && npm run build`
-   - **Output Directory**: `frontend/dist`
-   - **Install Command**: `cd frontend && npm install`
-
-## 🔧 Environment Variables
+## 🔧 Environment Configuration
 
 ### Backend (.env)
 ```env
-MONGODB_URI=mongodb://localhost:27017/shopease
-SESSION_SECRET=your_secret_key
+# Environment Configuration
+NODE_ENV=development  # Change to 'production' for deployment
+
+# Database Configuration
+MONGODB_URI=mongodb://localhost:27017/shopease_react
+
+# Session Configuration
+SESSION_SECRET=your-super-secret-session-key-here
+
+# Google OAuth Configuration
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# Razorpay Configuration
+RAZORPAY_KEY_ID=your-razorpay-key-id
+RAZORPAY_KEY_SECRET=your-razorpay-key-secret
+
+# Google Gemini AI Configuration
+GEMINI_API_KEY=your-gemini-api-key
+
+# Frontend URL (for CORS and OAuth redirects)
 FRONTEND_URL=http://localhost:5173
-RAZORPAY_KEY_ID=your_razorpay_key
-RAZORPAY_KEY_SECRET=your_razorpay_secret
-CHATBOT_URL=your_chatbot_api_url
-NODE_ENV=development
+
+# Server Configuration
+PORT=5000
 ```
 
-### Frontend (.env)
+### Frontend (.env.development / .env.production)
 ```env
-VITE_API_URL=http://localhost:5000
+# Development
+VITE_API_BASE_URL=http://localhost:5000
+
+# Production
+VITE_API_BASE_URL=https://your-backend-domain.com
 ```
 
-## 📱 API Endpoints
+## 🔄 Switching Between Environments
 
-### Authentication
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `GET /api/auth/logout` - User logout
-- `GET /api/auth/check` - Check authentication status
+### Development → Production
+1. Set `NODE_ENV=production` in backend
+2. Update `FRONTEND_URL` to your production frontend URL
+3. Update `MONGODB_URI` to your production database
+4. Set `VITE_API_BASE_URL` to your production backend URL in frontend
 
-### Products
-- `GET /api/products` - Get all products
-- `POST /api/products` - Add new product
-- `PUT /api/products/:id` - Update product
-- `DELETE /api/products/:id` - Delete product
-- `GET /api/products/search/:query` - Search products
+### Production → Development
+1. Set `NODE_ENV=development` in backend
+2. Update `FRONTEND_URL` to `http://localhost:5173`
+3. Update `MONGODB_URI` to your local database
+4. Set `VITE_API_BASE_URL` to `http://localhost:5000` in frontend
 
-### Payments
-- `POST /api/payment/create-order` - Create payment order
-- `POST /api/payment/verify` - Verify payment
+## 🛡️ Security Features
 
-### Chatbot
-- `POST /api/chatbot/message` - Send message to chatbot
+- **Development**: Relaxed CORS, non-secure cookies, detailed error messages
+- **Production**: Strict CORS, secure cookies, sanitized error messages
 
-## 🤝 Contributing
+## 📦 Available Scripts
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### Backend
+- `npm run dev` - Start development server
+- `npm start` - Start production server
 
-## 📄 License
+### Frontend
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run build:dev` - Build for development (with sourcemaps)
 
-This project is licensed under the ISC License.
+## 🌐 Deployment
 
-## 👨‍💻 Author
+### Backend Deployment
+- Set `NODE_ENV=production`
+- Configure production database URL
+- Set secure session secret
+- Configure production frontend URL
 
-**Ankit Jain**
-- GitHub: [@AnkitJain049](https://github.com/AnkitJain049)
-- LinkedIn: [Ankit Jain](https://www.linkedin.com/in/ankitjain-bpit/)
-- Email: ankitjain.0142@gmail.com
+### Frontend Deployment
+- Set `VITE_API_BASE_URL` to production backend URL
+- Run `npm run build`
+- Deploy `dist` folder to your hosting service
 
-## 🙏 Acknowledgments
+## 📝 Notes
 
-- Razorpay for payment integration
-- Google AI for chatbot capabilities
-- MongoDB Atlas for database hosting
-- Render for backend hosting
-- Vercel for frontend hosting 
+- The application automatically adjusts security settings based on `NODE_ENV`
+- CORS is configured to allow only the specified frontend URL in production
+- Session cookies are secure only in production mode
+- Error messages are sanitized in production to prevent information leakage 
