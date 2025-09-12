@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import EditProfile from "../components/EditProfile";
 import ToggleUserData from "../components/ToggleUserData";
@@ -6,8 +6,15 @@ import ToggleUserData from "../components/ToggleUserData";
 function UserProfile() {
   const { data: user } = useFetch(`${import.meta.env.VITE_API_BASE_URL}/api/user/profile`);
   const [editing, setEditing] = useState(false);
+  const [profile, setProfile] = useState(null);
 
-  if (!user) {
+  useEffect(() => {
+    if (user) {
+      setProfile(user);
+    }
+  }, [user]);
+
+  if (!profile) {
     return (
       <div className="min-h-screen flex items-center justify-center text-gray-700 dark:text-white">
         Loading profile...
@@ -22,14 +29,14 @@ function UserProfile() {
           <div className="flex flex-col items-center">
             <img
               className="w-24 h-24 mb-3 rounded-full shadow-lg object-cover"
-              src={`${import.meta.env.VITE_API_BASE_URL}/uploads/profilePics/${user.profilePic}`}
-              alt={user.name}
+              src={`${import.meta.env.VITE_API_BASE_URL}/uploads/profilePics/${profile.profilePic}`}
+              alt={profile.name}
             />
             <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-              {user.name}
+              {profile.name}
             </h5>
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              {user.email}
+              {profile.email}
             </span>
             <div className="flex mt-4 md:mt-6">
               <button
@@ -42,7 +49,14 @@ function UserProfile() {
           </div>
         </div>
       ) : (
-        <EditProfile user={user} onCancel={() => setEditing(false)} />
+        <EditProfile
+          user={profile}
+          onCancel={() => setEditing(false)}
+          onUpdate={(updatedUser) => {
+            setProfile(updatedUser);
+            setEditing(false);
+          }}
+        />
       )}
       <ToggleUserData />
     </div>

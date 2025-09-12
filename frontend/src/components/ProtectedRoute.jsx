@@ -9,7 +9,7 @@ function ProtectedRoute({ children }) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/check`, {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/status`, {
           credentials: 'include',
         });
 
